@@ -17,47 +17,6 @@
     padding: 0px 80px;
 
   }
-  .categories{
-    margin-top: $gapXL;
-    margin-bottom: calc($gapLg + 40px);
-  }
-  .menuCategory {
-    background-color: $white;
-    padding: $gapLg 0px;
-    margin-bottom: $gapLg;
-  }
-  .menuCards {
-    display: grid;
-    gap: 16px;
-    padding: 0px 80px;
-    grid-template-columns: 1fr 1fr;
-  }
-  .card {
-    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    padding: $gapMd;
-    position: relative;
-    cursor: pointer;
-    img {
-      border-radius: 6px;
-    }
-  }
-  .itemTitle {
-    font-weight: 600;
-    margin-bottom: $gapSm;
-  }
-  .itemDescription {
-    color: $gray;
-    font-size: 14px;
-  }
-  .itemPrice {
-    font-weight: 600;
-    position: absolute;
-    bottom: $gapMd;
-  }
   .categoryNav {
     position: sticky;
     top: 63px;

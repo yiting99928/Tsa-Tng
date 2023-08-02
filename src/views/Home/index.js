@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import banner from '../../assets/banner.jpg';
 import Modal from '../../components/Modal';
+import SideList from '../../components/SideList';
+import banner from '../../images/banner.jpg';
 import { initOrder } from '../../redux/orderSlice';
+import Category from './Category';
 import './Home.scss';
-import SideList from './SideList';
 
 function Home() {
   const [food, setFood] = useState([]);
-  const [selectedFood, setSelectedFood] = useState(null); // 追蹤選擇的餐點
-  const [showPopup, setShowPopup] = useState(false); // 控制彈窗
+  const [selectedFood, setSelectedFood] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
   const dispatch = useDispatch();
   const apiUrl = 'http://localhost:3000';
   const order = useSelector((state) => state.order);
@@ -37,11 +38,6 @@ function Home() {
   useEffect(() => {
     localStorage.setItem('orderList', JSON.stringify(order));
   }, [order]);
-
-  const handleFoodItemClick = (item) => {
-    setSelectedFood({ ...item, qty: 1 });
-    setShowPopup(true);
-  };
 
   const scrollToCategory = (category) => {
     const categoryRef = categoryRefs.current[category];
@@ -74,37 +70,11 @@ function Home() {
             </ul>
           </div>
 
-          <div className="categories">
-            {Object.entries(food).map(([type, items]) => (
-              <div className="menuCategory" key={type}>
-                <h2
-                  className="container"
-                  ref={(ref) => (categoryRefs.current[type] = ref)}>
-                  {type}
-                </h2>
-                <ul className="menuCards container">
-                  {items.map((item) => (
-                    <li
-                      key={item.id}
-                      className="card"
-                      onClick={() => handleFoodItemClick(item)}>
-                      <div className="itemDetail">
-                        <p className="itemTitle">{item.name}</p>
-                        <p className="itemDescription">{item.description}</p>
-                        <p className="itemPrice">${item.price}</p>
-                      </div>
-                      <img
-                        src={item.img}
-                        alt="breakfast"
-                        width="70"
-                        height="70"
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <Category
+            setSelectedFood={setSelectedFood}
+            setShowPopup={setShowPopup}
+            categoryRefs={categoryRefs}
+          />
         </main>
       )}
       {showPopup && selectedFood && (
