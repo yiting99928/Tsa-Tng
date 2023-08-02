@@ -1,0 +1,51 @@
+@import '../../utils/variables.scss';
+.header {
+  position: fixed;
+  background-color: $white;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.12);
+  height: 64px;
+  align-items: center;
+  padding: 0px 30px;
+  .logo {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    a {
+      color: $primary;
+    }
+  }
+  .topBar {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: $gapLg;
+    line-height: $gapLg;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    gap: $gapSm;
+    cursor: pointer;
+    &:first-child {
+      padding: 0px $gapMd;
+      border-right: 1px solid $gray;
+    }
+  }
+  svg {
+    color: $primary;
+    transform: scale(1.5);
+  }
+  .orderNum {
+    border-radius: 25px;
+    width: 25px;
+    height: 25px;
+    font-size: 13px;
+    display: grid;
+    place-items: center;
+    color: $white;
+    background-color: $primary;
+  }
+}

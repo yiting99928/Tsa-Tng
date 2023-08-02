@@ -1,0 +1,94 @@
+@import '../../utils/variables.scss';
+.home {
+  display: flex;
+  .menu {
+    width: calc(100% - 355px);
+  }
+  .banner {
+    object-fit: cover;
+    object-position: canter;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: $primary;
+    margin-bottom: $gapMd;
+    letter-spacing: 1.5px;
+    padding: 0px 80px;
+
+  }
+  .categories{
+    margin-top: $gapXL;
+    margin-bottom: calc($gapLg + 40px);
+  }
+  .menuCategory {
+    background-color: $white;
+    padding: $gapLg 0px;
+    margin-bottom: $gapLg;
+  }
+  .menuCards {
+    display: grid;
+    gap: 16px;
+    padding: 0px 80px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .card {
+    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: $gapMd;
+    position: relative;
+    cursor: pointer;
+    img {
+      border-radius: 6px;
+    }
+  }
+  .itemTitle {
+    font-weight: 600;
+    margin-bottom: $gapSm;
+  }
+  .itemDescription {
+    color: $gray;
+    font-size: 14px;
+  }
+  .itemPrice {
+    font-weight: 600;
+    position: absolute;
+    bottom: $gapMd;
+  }
+  .categoryNav {
+    position: sticky;
+    top: 63px;
+    z-index: 1;
+    background-color: $white;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.12);
+  }
+  .categoryBtns {
+    padding: $gapBase 80px;
+    display: flex;
+    gap: $gapMd;
+  }
+  .categoryBtn {
+    padding: $gapSm $gapMd;
+    letter-spacing: 1.5px;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: $primary;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@import '../../utils/variables.scss';
+
+.sideList {
+  word-break: break-word;
+  background-color: $white;
+  width: 355px;
+  padding: $gapLg;
+  box-shadow: 0 0.3rem 2rem rgba(0, 0, 0, 0.1);
+  .orderItems {
+    height: 100%;
+    width: 315px;
+    position: fixed;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: $gapMd;
+  }
+  h3 {
+    font-weight: 600;
+    text-align: center;
+  }
+  .noOrder{
+    font-size: 14px;
+    color:$gray;
+    text-align: center;
+    line-height: 1.5;
+    margin: auto 0;
+  }
+  .total {
+    margin-top: auto;
+    border-top: 1px solid $gray;
+    padding-top: $gapLg;
+    span{
+      margin-right: $gapBase;
+    }
+  }
+  .totalPrice {
+    line-height: 40px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .checkoutBtn {
+    width: 100%;
+    text-align: center;
+    background-color: $primary;
+    line-height: 35px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    letter-spacing: 3px;
+    a {
+      color: #fff;
+    }
+  }
+}
