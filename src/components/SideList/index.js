@@ -51,7 +51,18 @@ function SideList() {
                   </div>
                 </div>
                 <div className="orderDetail">
-                  <p className="note">{item.note && <div>{item.note}</div>}</p>
+                  {/* <div>
+                    {item.note && (
+                      <input
+                        className="note"
+                        value={item.note}
+                        onChange={() => console.log(item.note)}
+                      />
+                    )}
+                  </div> */}
+                  <div className="note">
+                    {item.note && <div>{item.note}</div>}
+                  </div>
                   <p>${item.price * item.qty}</p>
                 </div>
               </li>

@@ -3,31 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../components/Modal';
 import SideList from '../../components/SideList';
 import banner from '../../images/banner.jpg';
+import { fetchFoodData } from '../../redux/apiSlice';
 import { initOrder } from '../../redux/orderSlice';
 import Category from './Category';
 import './Home.scss';
 
 function Home() {
-  const [food, setFood] = useState([]);
   const [selectedFood, setSelectedFood] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const dispatch = useDispatch();
-  const apiUrl = 'http://localhost:3000';
-  const order = useSelector((state) => state.order);
   const categoryRefs = useRef({});
+  const dispatch = useDispatch();
+  const order = useSelector((state) => state.order);
+  const food = useSelector((state) => state.api.food);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(`${apiUrl}/breakfasts`);
-        const data = await response.json();
-        setFood(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, []);
+    dispatch(fetchFoodData());
+  }, [dispatch]);
 
   useEffect(() => {
     const savedOrderJSON = localStorage.getItem('orderList');
@@ -46,6 +37,7 @@ function Home() {
       block: 'start',
     });
   };
+  console.log(food);
   return (
     <section className="home">
       <main className="menu">
@@ -56,10 +48,10 @@ function Home() {
           width="100%"
           height="450"
         />
-        {food.length === 0 && (
+        {Object.keys(food).length === 0 && (
           <div className="noFoodData">Sorry! Something went wrong</div>
         )}
-        {food.length !== 0 && (
+        {Object.keys(food).length !== 0 && (
           <>
             <div className="categoryNav">
               <ul className="container categoryBtns">

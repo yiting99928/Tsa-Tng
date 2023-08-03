@@ -43,7 +43,7 @@ function Modal({ selectedFood, setShowPopup, setSelectedFood }) {
           <br />
           <textarea
             name="orderNote"
-            rows={4}
+            rows={3}
             cols={30}
             value={selectedFood.note}
             onChange={(e) =>

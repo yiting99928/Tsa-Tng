@@ -21,7 +21,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
   }
-  .orderItems::-webkit-scrollbar{
+  .orderItems::-webkit-scrollbar {
     display: none;
   }
   .orderItem {
@@ -35,15 +35,21 @@
   .itemNum {
     display: flex;
     align-items: center;
-    gap:$gapBase;
-    svg{
-      color:$primary;
+    gap: $gapBase;
+    svg {
+      color: $primary;
       padding-top: 1px;
+      cursor: pointer;
     }
   }
   .note {
     color: $gray;
-    font-size: 14px;
+    font-size: 13px;
+    max-width: 200px;
+    border: none;
+    &:focus {
+      border: none;
+    }
   }
   h3 {
     font-weight: 600;
