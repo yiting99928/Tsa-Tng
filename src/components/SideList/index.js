@@ -20,8 +20,8 @@ function SideList() {
   }
 
   return (
-    <aside className="sideList">
-      <div className="orderItems">
+    <aside className="sideContainer">
+      <div className="orderList">
         <h3>您的訂單</h3>
         {order.length === 0 && (
           <div className="noOrder">
@@ -31,31 +31,29 @@ function SideList() {
           </div>
         )}
         {order.length !== 0 && (
-          <ul>
+          <ul className="orderItems">
             {order.map((item) => (
-              <li key={item.name + item.note}>
-                {item.name}
-                <br />
-                {item.note && (
-                  <div>
-                    {item.note}
-                    <br />
+              <li key={item.name + item.note} className="orderItem">
+                <div className="orderDetail">
+                  <h4>{item.name}</h4>
+                  <div className="itemNum">
+                    {item.qty === 1 ? (
+                      <BsTrashFill onClick={(e) => deleteOrder(e, item.id)} />
+                    ) : (
+                      <MdOutlineRemoveCircle
+                        onClick={(e) => editOrder(e, item, item.qty - 1)}
+                      />
+                    )}
+                    {item.qty}
+                    <MdOutlineAddCircle
+                      onClick={(e) => editOrder(e, item, item.qty + 1)}
+                    />
                   </div>
-                )}
-                {item.qty === 1 ? (
-                  <BsTrashFill onClick={(e) => deleteOrder(e, item.id)} />
-                ) : (
-                  <MdOutlineRemoveCircle
-                    onClick={(e) => editOrder(e, item, item.qty - 1)}
-                  />
-                )}
-                {item.qty}
-                <MdOutlineAddCircle
-                  onClick={(e) => editOrder(e, item, item.qty + 1)}
-                />
-                <br />${item.price * item.qty}
-                <br />
-                <br />
+                </div>
+                <div className="orderDetail">
+                  <p className="note">{item.note && <div>{item.note}</div>}</p>
+                  <p>${item.price * item.qty}</p>
+                </div>
               </li>
             ))}
           </ul>

@@ -1,12 +1,13 @@
 @import '../../utils/variables.scss';
 
-.sideList {
+.sideContainer {
   word-break: break-word;
   background-color: $white;
   width: 355px;
   padding: $gapLg;
   box-shadow: 0 0.3rem 2rem rgba(0, 0, 0, 0.1);
-  .orderItems {
+  min-height: 100vh;
+  .orderList {
     height: 100%;
     width: 315px;
     position: fixed;
@@ -15,13 +16,42 @@
     flex-direction: column;
     gap: $gapMd;
   }
+  .orderItems {
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+  .orderItems::-webkit-scrollbar{
+    display: none;
+  }
+  .orderItem {
+    padding: $gapSm 0px;
+  }
+  .orderDetail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $gapBase;
+  }
+  .itemNum {
+    display: flex;
+    align-items: center;
+    gap:$gapBase;
+    svg{
+      color:$primary;
+      padding-top: 1px;
+    }
+  }
+  .note {
+    color: $gray;
+    font-size: 14px;
+  }
   h3 {
     font-weight: 600;
     text-align: center;
   }
-  .noOrder{
+  .noOrder {
     font-size: 14px;
-    color:$gray;
+    color: $gray;
     text-align: center;
     line-height: 1.5;
     margin: auto 0;
@@ -30,7 +60,7 @@
     margin-top: auto;
     border-top: 1px solid $gray;
     padding-top: $gapLg;
-    span{
+    span {
       margin-right: $gapBase;
     }
   }

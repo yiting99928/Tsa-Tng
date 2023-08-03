@@ -48,35 +48,40 @@ function Home() {
   };
   return (
     <section className="home">
-      {food && (
-        <main className="menu">
-          <img
-            src={banner}
-            className="banner"
-            alt="banner"
-            width="100%"
-            height="450"
-          />
-          <div className="categoryNav">
-            <ul className="container categoryBtns">
-              {Object.keys(food).map((item) => (
-                <li
-                  className="categoryBtn"
-                  key={item}
-                  onClick={() => scrollToCategory(item)}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+      <main className="menu">
+        <img
+          src={banner}
+          className="banner"
+          alt="banner"
+          width="100%"
+          height="450"
+        />
+        {food.length === 0 && (
+          <div className="noFoodData">Sorry! Something went wrong</div>
+        )}
+        {food.length !== 0 && (
+          <>
+            <div className="categoryNav">
+              <ul className="container categoryBtns">
+                {Object.keys(food).map((item) => (
+                  <li
+                    className="categoryBtn"
+                    key={item}
+                    onClick={() => scrollToCategory(item)}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <Category
-            setSelectedFood={setSelectedFood}
-            setShowPopup={setShowPopup}
-            categoryRefs={categoryRefs}
-          />
-        </main>
-      )}
+            <Category
+              setSelectedFood={setSelectedFood}
+              setShowPopup={setShowPopup}
+              categoryRefs={categoryRefs}
+            />
+          </>
+        )}
+      </main>
       {showPopup && selectedFood && (
         <Modal
           selectedFood={selectedFood}
