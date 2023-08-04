@@ -7,6 +7,9 @@
   padding: $gapLg;
   box-shadow: 0 0.3rem 2rem rgba(0, 0, 0, 0.1);
   min-height: 100vh;
+  @media screen and (max-width:960px){
+    display: none;
+  } ;
   .orderList {
     height: 100%;
     width: 315px;
@@ -16,76 +19,83 @@
     flex-direction: column;
     gap: $gapMd;
   }
-  .orderItems {
-    height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
+}
+.orderItems {
+  height: 100%;
+}
+.orderItem {
+  padding: $gapSm $gapBase;
+}
+.orderDetail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $gapBase;
+}
+.itemNum {
+  display: flex;
+  align-items: center;
+  gap: $gapBase;
+  svg {
+    color: $primary;
+    padding-top: 1px;
+    cursor: pointer;
   }
-  .orderItems::-webkit-scrollbar {
-    display: none;
-  }
-  .orderItem {
-    padding: $gapSm 0px;
-  }
-  .orderDetail {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: $gapBase;
-  }
-  .itemNum {
-    display: flex;
-    align-items: center;
-    gap: $gapBase;
-    svg {
-      color: $primary;
-      padding-top: 1px;
-      cursor: pointer;
-    }
-  }
-  .note {
-    color: $gray;
-    font-size: 13px;
-    max-width: 200px;
+}
+.note {
+  color: $gray;
+  font-size: 13px;
+  max-width: 200px;
+  border: none;
+  &:focus {
     border: none;
-    &:focus {
-      border: none;
-    }
   }
-  h3 {
-    font-weight: 600;
-    text-align: center;
+}
+.orderTitle {
+  font-weight: 600;
+  text-align: center;
+}
+.noOrder {
+  font-size: 14px;
+  color: $gray;
+  text-align: center;
+  line-height: 1.5;
+  margin: auto 0;
+}
+.total {
+  margin-top: auto;
+  border-top: 1px solid $gray;
+  padding-top: $gapLg;
+  span {
+    margin-right: $gapBase;
   }
-  .noOrder {
-    font-size: 14px;
-    color: $gray;
-    text-align: center;
-    line-height: 1.5;
-    margin: auto 0;
+}
+.totalPrice {
+  line-height: 40px;
+  font-size: 24px;
+  font-weight: 600;
+}
+.checkoutBtn {
+  width: 100%;
+  text-align: center;
+  background-color: $primary;
+  line-height: 35px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  letter-spacing: 3px;
+  a {
+    color: #fff;
   }
-  .total {
-    margin-top: auto;
-    border-top: 1px solid $gray;
-    padding-top: $gapLg;
-    span {
-      margin-right: $gapBase;
-    }
+  a:visited {
+    color: #fff;
   }
-  .totalPrice {
-    line-height: 40px;
-    font-size: 24px;
-    font-weight: 600;
-  }
-  .checkoutBtn {
-    width: 100%;
-    text-align: center;
-    background-color: $primary;
-    line-height: 35px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    letter-spacing: 3px;
-    a {
-      color: #fff;
-    }
+}
+.cart{
+  padding: 50px 80px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .orderTitle{
+    margin-bottom: $gapSm;
   }
 }

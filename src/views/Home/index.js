@@ -57,7 +57,7 @@ function Home() {
         )}
         {food.length !== 0 && (
           <>
-            <div className="categoryNav">
+            <div className="categoryNav scroll">
               <ul className="container categoryBtns">
                 {uniqueTypes().map((item) => (
                   <li
@@ -84,7 +84,9 @@ function Home() {
           setShowPopup={setShowPopup}
         />
       )}
-      <SideList />
+      <aside className="sideContainer">
+        <SideList />
+      </aside>
     </section>
   );
 }

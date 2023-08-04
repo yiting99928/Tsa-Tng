@@ -10,7 +10,15 @@
   position: relative;
   background-color: #f7f7f7;
 }
-.container{
-    max-width: 1263px;
-    margin: 0 auto;
+.container {
+  max-width: 1263px;
+  margin: 0 auto;
+}
+.scroll {
+  overflow: hidden;
+  overflow: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

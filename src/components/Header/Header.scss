@@ -24,7 +24,7 @@
     gap: $gapLg;
     line-height: $gapLg;
   }
-  li {
+  .headerLink {
     display: flex;
     align-items: center;
     gap: $gapSm;
@@ -47,5 +47,14 @@
     place-items: center;
     color: $white;
     background-color: $primary;
+  }
+  .cart{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left:0px;
+    z-index: 4;
+    background-color: #fff;
   }
 }

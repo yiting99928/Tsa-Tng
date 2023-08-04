@@ -3,6 +3,9 @@
   display: flex;
   .menu {
     width: calc(100% - 355px);
+    @media screen and (max-width:960px){
+      width: 100%;
+    } ;
   }
   .banner {
     object-fit: cover;
@@ -23,11 +26,12 @@
     z-index: 1;
     background-color: $white;
     box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.12);
-  }
+}
   .categoryBtns {
     padding: $gapBase 80px;
     display: flex;
     gap: $gapMd;
+    white-space: nowrap;
   }
   .categoryBtn {
     padding: $gapSm $gapMd;

@@ -19,7 +19,7 @@ function Category({ setSelectedFood, setShowPopup, categoryRefs }) {
   }, {});
 
   // console.log(organizedFoodData);
-  console.log(categoryRefs);
+  // console.log(categoryRefs);
   return (
     <div className="categories">
       {Object.entries(organizedFoodData).map(([type, items]) => (
