@@ -11,7 +11,7 @@ export const fetchFoodData = createAsyncThunk('api/fetchFoodData', async () => {
 });
 
 const initialState = {
-  food: {},
+  food: [],
   status: false,
 };
 

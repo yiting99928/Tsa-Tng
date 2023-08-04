@@ -18,7 +18,14 @@ function SideList() {
     e.stopPropagation();
     dispatch(updateOrder({ ...item, qty: newQty }));
   }
-
+  function handleDelete() {
+    fetch('http://localhost:3000/breakfasts/11', {
+      method: 'DELETE',
+    })
+      .then((res) => res.text())
+      .then((res) => console.log(res));
+  }
+  // console.log(order);
   return (
     <aside className="sideContainer">
       <div className="orderList">
@@ -84,6 +91,9 @@ function SideList() {
         <button className="checkoutBtn">
           <Link to="./checkout">結帳</Link>
         </button>
+        {/* <button className="checkoutBtn" onClick={handleDelete}>
+          刪除
+        </button> */}
       </div>
     </aside>
   );

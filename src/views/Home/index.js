@@ -37,7 +37,11 @@ function Home() {
       block: 'start',
     });
   };
-  console.log(food);
+  // console.log(food);
+
+  function uniqueTypes() {
+    return [...new Set(food.map((item) => item.type))];
+  }
   return (
     <section className="home">
       <main className="menu">
@@ -48,14 +52,14 @@ function Home() {
           width="100%"
           height="450"
         />
-        {Object.keys(food).length === 0 && (
+        {food.length === 0 && (
           <div className="noFoodData">Sorry! Something went wrong</div>
         )}
-        {Object.keys(food).length !== 0 && (
+        {food.length !== 0 && (
           <>
             <div className="categoryNav">
               <ul className="container categoryBtns">
-                {Object.keys(food).map((item) => (
+                {uniqueTypes().map((item) => (
                   <li
                     className="categoryBtn"
                     key={item}
@@ -65,7 +69,6 @@ function Home() {
                 ))}
               </ul>
             </div>
-
             <Category
               setSelectedFood={setSelectedFood}
               setShowPopup={setShowPopup}
