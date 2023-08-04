@@ -162,3 +162,9 @@ input[type='text']:focus {
 img {
   object-fit: cover;
 }
+textarea {
+  resize: none;
+}
+textarea,input:focus-visible{
+  outline:none
+}

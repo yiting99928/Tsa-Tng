@@ -19,7 +19,7 @@ function Category({ setSelectedFood, setShowPopup, categoryRefs }) {
   }, {});
 
   // console.log(organizedFoodData);
-
+  console.log(categoryRefs);
   return (
     <div className="categories">
       {Object.entries(organizedFoodData).map(([type, items]) => (
@@ -27,6 +27,7 @@ function Category({ setSelectedFood, setShowPopup, categoryRefs }) {
           className="menuCategory"
           key={type}
           ref={(ref) => (categoryRefs.current[type] = ref)}>
+          {/* 使 callback 是為了在掛載時，可能還沒有渲染出相應的分類區塊，此時直接設置引用可能會導致引用變量為 null 或 undefined。 */}
           <h2 className="container">{type}</h2>
           <ul className="menuCards container">
             {items.map((item) => (

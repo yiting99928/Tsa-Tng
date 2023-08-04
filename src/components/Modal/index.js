@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { createOrder } from '../../redux/orderSlice';
 import './Modal.scss';
@@ -23,24 +23,24 @@ function Modal({ selectedFood, setShowPopup, setSelectedFood }) {
     <>
       <div className="modalContainer" onClick={() => setShowPopup(false)} />
       <div className="popup">
-        <AiOutlineCloseCircle onClick={() => setShowPopup(false)} />
-        <h2>{selectedFood.name}</h2>
-        <p>{selectedFood.description}</p>
-        <p>價格：${selectedFood.price}</p>
-        <input
-          type="number"
-          min="1"
-          value={selectedFood.qty}
-          onChange={(e) =>
-            setSelectedFood({
-              ...selectedFood,
-              qty: Number(e.target.value),
-            })
-          }
+        <img
+          src={selectedFood.img}
+          alt={selectedFood.name}
+          width="100%"
+          height="100"
+          className="foodImg"
         />
-        <p>
-          備註
-          <br />
+        <div className="closeBtn">
+          <MdOutlineClose onClick={() => setShowPopup(false)} />
+        </div>
+        <div className="titleContainer">
+          <p className="popUpTitle">{selectedFood.name}</p>
+          <p>${selectedFood.price}</p>
+        </div>
+        <p className="popUpDescription">{selectedFood.description}</p>
+
+        <div>
+          <p>餐點備註</p>
           <textarea
             name="orderNote"
             rows={3}
@@ -53,8 +53,24 @@ function Modal({ selectedFood, setShowPopup, setSelectedFood }) {
               })
             }
           />
-        </p>
-        <button onClick={addOrder}>確定</button>
+        </div>
+        <div className="addToCartContainer">
+          <input
+            className="addOrderNum"
+            type="number"
+            min="1"
+            value={selectedFood.qty}
+            onChange={(e) =>
+              setSelectedFood({
+                ...selectedFood,
+                qty: Number(e.target.value),
+              })
+            }
+          />
+          <button onClick={addOrder} className="addToCartBtn">
+            放入購物車
+          </button>
+        </div>
       </div>
     </>
   );
