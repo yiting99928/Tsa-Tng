@@ -5,8 +5,9 @@ import OrderList from '../../components/OrderList/OrderList';
 import banner from '../../images/banner.jpg';
 import { fetchFoodData } from '../../redux/homeFoodApi';
 import { initOrder } from '../../redux/orderListApi';
-import Category from './Category';
+import { ENUM_FOOD_TYPE } from '../../utils/dataConstants';
 import './Home.scss';
+import Category from './components/Category';
 
 function Home() {
   const [selectedFood, setSelectedFood] = useState(null);
@@ -37,10 +38,10 @@ function Home() {
       block: 'start',
     });
   };
-  // console.log(food);
 
   function uniqueTypes() {
-    return [...new Set(food.map((item) => item.type))];
+    const uniqueTypes = new Set(food.map((item) => item.group));
+    return Array.from(uniqueTypes);
   }
   return (
     <section className="home">
@@ -64,7 +65,7 @@ function Home() {
                     className="categoryBtn"
                     key={item}
                     onClick={() => scrollToCategory(item)}>
-                    {item}
+                    {ENUM_FOOD_TYPE[item]}
                   </li>
                 ))}
               </ul>

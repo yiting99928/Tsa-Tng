@@ -6,7 +6,7 @@
       "description": "軟綿的饅頭夾上煎熟的蛋。",
       "price": 60,
       "qty": 20,
-      "type": "饅頭和包子類",
+      "group": "STEAMED_BUNS",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/22034333.jpg?width=%s"
     },
     {
@@ -15,7 +15,7 @@
       "description": "新鮮豆子磨成的豆漿。",
       "price": 30,
       "qty": 0,
-      "type": "飲品類",
+      "group": "DRINK",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/28905277.jpg?width=%s"
     },
     {
@@ -24,7 +24,7 @@
       "description": "用米磨成的濃稠米漿。",
       "price": 40,
       "qty": 25,
-      "type": "飲品類",
+      "group": "DRINK",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/28905278.jpg?width=%s"
     },
     {
@@ -33,7 +33,7 @@
       "description": "酥脆的鍋貼，包含豬肉和蔬菜餡。",
       "price": 80,
       "qty": 15,
-      "type": "小吃類",
+      "group": "STREET_FOOD",
       "img": "https://images.deliveryhero.io/image/fd-tw/LH/g3wj-hero.jpg"
     },
     {
@@ -42,7 +42,7 @@
       "description": "熱騰騰的鐵板麵，加入青菜和豬肉。",
       "price": 70,
       "qty": 18,
-      "type": "主食類",
+      "group": "MAIN",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/12190293.jpg?width=%s"
     },
     {
@@ -51,7 +51,7 @@
       "description": "用蘿蔔磨成的糕點，口感Q彈。",
       "price": 50,
       "qty": 22,
-      "type": "小吃類",
+      "group": "STREET_FOOD",
       "img": "https://images.deliveryhero.io/image/fd-tw/LH/g2mt-hero.jpg"
     },
     {
@@ -60,7 +60,7 @@
       "description": "薄脆的蛋餅，可加入火腿或蔬菜。",
       "price": 55,
       "qty": 20,
-      "type": "饅頭和包子類",
+      "group": "STEAMED_BUNS",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/11012086.jpg?width=%s"
     },
     {
@@ -69,7 +69,7 @@
       "description": "糯米飯包裹各式餡料，方便又好吃。",
       "price": 65,
       "qty": 12,
-      "type": "主食類",
+      "group": "MAIN",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/28920915.jpg?width=%s"
     },
     {
@@ -78,7 +78,7 @@
       "description": "酥脆的餅皮夾著香嫩的豬肉餡。",
       "price": 75,
       "qty": 16,
-      "type": "小吃類",
+      "group": "STREET_FOOD",
       "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDFkN3knoLEDIaogemstvmlPEbmP1z6mZ9gW-eEn3Mxu46bHUqphoIA6fO0hLYunkZeEE&usqp=CAU"
     },
     {
@@ -87,7 +87,7 @@
       "description": "濃稠的鹹粥，可以加入蛋花或豬肉片。",
       "price": 45,
       "qty": 25,
-      "type": "小吃類",
+      "group": "STREET_FOOD",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/6655195.jpg?width=%s"
     },
     {
@@ -96,7 +96,7 @@
       "description": "讚。",
       "price": 25,
       "qty": 25,
-      "type": "飲品類",
+      "group": "DRINK",
       "img": "https://images.deliveryhero.io/image/fd-tw/Products/50088086.jpg?width=%s"
     }
   ]
