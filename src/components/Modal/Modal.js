@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { createOrder } from '../../redux/orderSlice';
+import { createOrder } from '../../redux/orderListApi';
 import './Modal.scss';
 
 function Modal({ selectedFood, setShowPopup, setSelectedFood }) {

@@ -2,6 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import './Category.scss';
 
+const ENUM_FOOD_TYPE = {
+  MAIN: {
+    TITLE: '主食類',
+    TYPE: 1,
+  },
+};
+
 function Category({ setSelectedFood, setShowPopup, categoryRefs }) {
   const food = useSelector((state) => state.api.food);
   const handleFoodItemClick = (item) => {

@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import apiReducer from './apiSlice';
-import counterReducer from './counterSlice';
-import orderReducer from './orderSlice';
+import apiReducer from './homeFoodApi';
+import orderReducer from './orderListApi';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     order: orderReducer,
     api: apiReducer,
   },

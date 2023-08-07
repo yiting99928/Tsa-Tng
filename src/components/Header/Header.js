@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BiCart, BiSolidUserCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import OrderList from '../OrderList';
+import OrderList from '../OrderList/OrderList';
 import './Header.scss';
 
 function Header() {

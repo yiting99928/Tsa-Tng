@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Modal from '../../components/Modal';
-import OrderList from '../../components/OrderList';
+import Modal from '../../components/Modal/Modal';
+import OrderList from '../../components/OrderList/OrderList';
 import banner from '../../images/banner.jpg';
-import { fetchFoodData } from '../../redux/apiSlice';
-import { initOrder } from '../../redux/orderSlice';
+import { fetchFoodData } from '../../redux/homeFoodApi';
+import { initOrder } from '../../redux/orderListApi';
 import Category from './Category';
 import './Home.scss';
 

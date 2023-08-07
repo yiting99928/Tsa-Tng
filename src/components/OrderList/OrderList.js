@@ -7,7 +7,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { removeOrder, updateOrder } from '../../redux/orderSlice';
+import { removeOrder, updateOrder } from '../../redux/orderListApi';
 import './OrderList.scss';
 
 function OrderList({ openCart }) {

@@ -1,12 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer';
-import Header from './components/Header';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 import './utils/_global.scss';
 import './utils/_reset.scss';
-import Checkout from './views/Checkout';
-import { Counter } from './views/Counter/Counter';
-import Home from './views/Home';
+import Checkout from './views/Checkout/Checkout';
+import Home from './views/Home/Home';
 function App() {
   return (
     <BrowserRouter>
@@ -14,7 +13,6 @@ function App() {
       <Routes>
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/" element={<Home />} />
-        <Route path="/counter" element={<Counter />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
