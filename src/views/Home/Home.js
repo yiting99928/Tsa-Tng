@@ -63,9 +63,9 @@ function Home() {
                 {uniqueTypes().map((item) => (
                   <li
                     className="categoryBtn"
-                    key={item}
+                    key={ENUM_FOOD_TYPE[item].ID}
                     onClick={() => scrollToCategory(item)}>
-                    {ENUM_FOOD_TYPE[item]}
+                    {ENUM_FOOD_TYPE[item].TITLE}
                   </li>
                 ))}
               </ul>
