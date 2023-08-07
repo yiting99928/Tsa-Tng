@@ -23,7 +23,7 @@ function Header() {
           宜庭
         </li>
         {showCart && (
-          <div className="cart">
+          <div className="cartContainer">
             <OrderList openCart={openCart} />
           </div>
         )}

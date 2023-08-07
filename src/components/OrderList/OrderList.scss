@@ -1,15 +1,6 @@
 @import '../../utils/variables.scss';
 
 .sideContainer {
-  word-break: break-word;
-  background-color: $white;
-  width: 355px;
-  padding: $gapLg;
-  box-shadow: 0 0.3rem 2rem rgba(0, 0, 0, 0.1);
-  min-height: 100vh;
-  @media screen and (max-width:960px){
-    display: none;
-  } ;
   .orderList {
     height: 100%;
     width: 315px;
@@ -21,9 +12,6 @@
   }
 }
 .cart{
-  padding: 50px 80px;
-  max-height: 100vh;
-  position: relative;
   .orderTitle{
     margin-bottom: $gapSm;
   }
