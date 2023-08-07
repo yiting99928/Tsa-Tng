@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
+import { closePopUp } from '../../redux/infoApi';
 import { createOrder } from '../../redux/orderListApi';
 import './Modal.scss';
 
-function Modal({ selectedFood, setShowPopup, setSelectedFood }) {
+function Modal({ selectedFood, setSelectedFood }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,12 +17,12 @@ function Modal({ selectedFood, setShowPopup, setSelectedFood }) {
 
   function addOrder() {
     dispatch(createOrder(selectedFood));
-    setShowPopup(false);
+    dispatch(closePopUp());
   }
 
   return (
     <>
-      <div className="modalContainer" onClick={() => setShowPopup(false)} />
+      <div className="modalContainer" onClick={() => dispatch(closePopUp())} />
       <div className="popup">
         <img
           src={selectedFood.img}
@@ -31,7 +32,7 @@ function Modal({ selectedFood, setShowPopup, setSelectedFood }) {
           className="foodImg"
         />
         <div className="closeBtn">
-          <MdOutlineClose onClick={() => setShowPopup(false)} />
+          <MdOutlineClose onClick={() => dispatch(closePopUp())} />
         </div>
         <div className="titleContainer">
           <p className="popUpTitle">{selectedFood.name}</p>

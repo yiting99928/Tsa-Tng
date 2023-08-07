@@ -11,11 +11,11 @@ import Category from './components/Category';
 
 function Home() {
   const [selectedFood, setSelectedFood] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
   const categoryRefs = useRef({});
   const dispatch = useDispatch();
   const order = useSelector((state) => state.order);
   const food = useSelector((state) => state.api.food);
+  const info = useSelector((state) => state.info);
 
   useEffect(() => {
     dispatch(fetchFoodData());
@@ -72,18 +72,13 @@ function Home() {
             </div>
             <Category
               setSelectedFood={setSelectedFood}
-              setShowPopup={setShowPopup}
               categoryRefs={categoryRefs}
             />
           </>
         )}
       </main>
-      {showPopup && selectedFood && (
-        <Modal
-          selectedFood={selectedFood}
-          setSelectedFood={setSelectedFood}
-          setShowPopup={setShowPopup}
-        />
+      {info.isShowPopup && selectedFood && (
+        <Modal selectedFood={selectedFood} setSelectedFood={setSelectedFood} />
       )}
       <aside className="sideContainer">
         <OrderList />

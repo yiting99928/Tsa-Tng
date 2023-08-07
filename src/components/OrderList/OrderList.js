@@ -7,13 +7,14 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { closeCart } from '../../redux/infoApi';
 import { removeOrder, updateOrder } from '../../redux/orderListApi';
 import './OrderList.scss';
 
-function OrderList({ openCart }) {
+function OrderList() {
   const dispatch = useDispatch();
-
   const order = useSelector((state) => state.order);
+  const info = useSelector((state) => state.info);
 
   function deleteOrder(e, id) {
     e.stopPropagation();
@@ -23,11 +24,11 @@ function OrderList({ openCart }) {
     e.stopPropagation();
     dispatch(updateOrder({ ...item, qty: newQty }));
   }
-  // console.log(order);
+
   return (
     <div className="orderList">
-      {openCart && (
-        <div className="closeBtn" onClick={openCart}>
+      {info.isShowCart && (
+        <div className="closeBtn" onClick={() => dispatch(closeCart())}>
           <MdOutlineClose />
         </div>
       )}

@@ -1,14 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { showPopUp } from '../../../redux/infoApi';
 import { ENUM_FOOD_TYPE } from '../../../utils/dataConstants';
 import './Category.scss';
 
-function Category({ setSelectedFood, setShowPopup, categoryRefs }) {
+function Category({ setSelectedFood, categoryRefs }) {
   const food = useSelector((state) => state.api.food);
+  const dispatch = useDispatch();
+
   const handleFoodItemClick = (item) => {
     if (item.qty !== 0) {
       setSelectedFood({ ...item, qty: 1 });
-      setShowPopup(true);
+      dispatch(showPopUp());
     }
   };
   const organizedFoodData = food.reduce((acc, item) => {

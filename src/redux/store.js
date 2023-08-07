@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import apiReducer from './homeFoodApi';
+import foodApiReducer from './homeFoodApi';
+import infoReducer from './infoApi';
 import orderReducer from './orderListApi';
 
 export const store = configureStore({
   reducer: {
     order: orderReducer,
-    api: apiReducer,
+    api: foodApiReducer,
+    info: infoReducer,
   },
 });

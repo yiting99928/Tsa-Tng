@@ -15,7 +15,7 @@ const initialState = {
   status: false,
 };
 
-const apiSlice = createSlice({
+const homeFoodApi = createSlice({
   name: 'api',
   initialState,
   reducers: {},
@@ -33,4 +33,4 @@ const apiSlice = createSlice({
   },
 });
 
-export default apiSlice.reducer;
+export default homeFoodApi.reducer;
