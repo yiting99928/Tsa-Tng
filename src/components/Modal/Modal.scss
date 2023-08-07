@@ -59,10 +59,10 @@
     width: 300px;
     height: 150px;
     padding: $gapBase;
-    border:1px solid $gray;
+    border:1px solid $lightGrey;
     border-radius: 6px;
     &:focus{
-      border:2px solid $primary
+      border:1px solid $primary
     }
   }
   .addToCartContainer{
@@ -71,8 +71,10 @@
   }
   .addOrderNum{
     width: 50px;
+    border:1px solid $lightGrey;
+    border-radius: 6px;
     &:focus{
-      border:2px solid $primary
+      border:1px solid $primary
     }
   }
   .addToCartBtn{
