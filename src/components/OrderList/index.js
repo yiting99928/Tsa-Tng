@@ -1,11 +1,16 @@
 import { BsTrashFill } from 'react-icons/bs';
-import { MdOutlineAddCircle, MdOutlineRemoveCircle } from 'react-icons/md';
+import {
+  MdOutlineAddCircle,
+  MdOutlineClose,
+  MdOutlineRemoveCircle,
+} from 'react-icons/md';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeOrder, updateOrder } from '../../redux/orderSlice';
-import './SideList.scss';
+import './OrderList.scss';
 
-function SideList() {
+function OrderList({ openCart }) {
   const dispatch = useDispatch();
 
   const order = useSelector((state) => state.order);
@@ -21,6 +26,11 @@ function SideList() {
   // console.log(order);
   return (
     <div className="orderList">
+      {openCart && (
+        <div className="closeBtn" onClick={openCart}>
+          <MdOutlineClose />
+        </div>
+      )}
       <h3 className="orderTitle">您的訂單</h3>
       {order.length === 0 && (
         <div className="noOrder">
@@ -77,4 +87,4 @@ function SideList() {
     </div>
   );
 }
-export default SideList;
+export default OrderList;

@@ -20,6 +20,25 @@
     gap: $gapMd;
   }
 }
+.cart{
+  padding: 50px 80px;
+  max-height: 100vh;
+  position: relative;
+  .orderTitle{
+    margin-bottom: $gapSm;
+  }
+  .orderList {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.closeBtn{
+  position: absolute;
+  top:$gapXL;
+  right:$gapXL;
+  cursor: pointer;
+}
 .orderItems {
   height: 100%;
 }
@@ -88,14 +107,5 @@
   }
   a:visited {
     color: #fff;
-  }
-}
-.cart{
-  padding: 50px 80px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  .orderTitle{
-    margin-bottom: $gapSm;
   }
 }

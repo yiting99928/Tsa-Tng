@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BiCart, BiSolidUserCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SideList from '../SideList';
+import OrderList from '../OrderList';
 import './Header.scss';
 
 function Header() {
@@ -24,8 +24,7 @@ function Header() {
         </li>
         {showCart && (
           <div className="cart">
-            <div onClick={openCart}>close</div>
-            <SideList />
+            <OrderList openCart={openCart} />
           </div>
         )}
         <li onClick={openCart} className="headerLink">

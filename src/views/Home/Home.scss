@@ -5,20 +5,13 @@
     width: calc(100% - 355px);
     @media screen and (max-width:960px){
       width: 100%;
-    } ;
+    };
   }
   .banner {
     object-fit: cover;
-    object-position: canter;
-  }
-  h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: $primary;
-    margin-bottom: $gapMd;
-    letter-spacing: 1.5px;
-    padding: 0px 80px;
-
+    @media screen and (max-width:960px){
+      height: 300px;
+    };
   }
   .categoryNav {
     position: sticky;
@@ -32,6 +25,9 @@
     display: flex;
     gap: $gapMd;
     white-space: nowrap;
+    @media screen and (max-width:960px){
+      padding: $gapBase $gapXL;
+    }
   }
   .categoryBtn {
     padding: $gapSm $gapMd;
