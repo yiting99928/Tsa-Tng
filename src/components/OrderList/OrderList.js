@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { closeCart, showPopUp } from '../../redux/infoApi';
 import {
   removeOrder,
+  setEditing,
   setSelectedFood,
   updateOrder,
 } from '../../redux/orderListApi';
@@ -32,8 +33,8 @@ function OrderList() {
   function handleEditOrder(food) {
     dispatch(setSelectedFood(food));
     dispatch(showPopUp());
+    dispatch(setEditing(true));
   }
-
   return (
     <div className="orderList">
       {info.isShowCart && (
@@ -53,7 +54,7 @@ function OrderList() {
         <ul className="orderItems scroll">
           {order.map((item) => (
             <li
-              key={item.name + item.note}
+              key={item.time}
               className="orderItem"
               onClick={() => handleEditOrder(item)}>
               <div className="orderDetail">

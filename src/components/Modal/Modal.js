@@ -1,13 +1,23 @@
 import { useEffect } from 'react';
+import { BsTrashFill } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { closePopUp } from '../../redux/infoApi';
-import { createOrder } from '../../redux/orderListApi';
+
+import {
+  createOrder,
+  removeOrder,
+  setEditing,
+  setSelectedFood,
+  updateOrder,
+} from '../../redux/orderListApi';
 import './Modal.scss';
 
 function Modal() {
   const dispatch = useDispatch();
   const selectedFood = useSelector((state) => state.order.selectedFood);
+  const isEditing = useSelector((state) => state.order.isEditing);
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -16,13 +26,29 @@ function Modal() {
   }, []);
 
   function addOrder() {
-    dispatch(createOrder(selectedFood));
+    dispatch(createOrder({ ...selectedFood, time: new Date().getTime() }));
     dispatch(closePopUp());
+  }
+
+  function editOrder() {
+    dispatch(updateOrder(selectedFood));
+    dispatch(closePopUp());
+    dispatch(setEditing(false));
+  }
+
+  function deleteOrder() {
+    dispatch(removeOrder(selectedFood));
+    dispatch(closePopUp());
+    dispatch(setEditing(false));
+  }
+  function closeModal() {
+    dispatch(closePopUp());
+    dispatch(setEditing(false));
   }
 
   return (
     <>
-      <div className="modalContainer" onClick={() => dispatch(closePopUp())} />
+      <div className="modalContainer" onClick={closeModal} />
       <div className="popup">
         <img
           src={selectedFood.img}
@@ -32,7 +58,7 @@ function Modal() {
           className="foodImg"
         />
         <div className="closeBtn">
-          <MdOutlineClose onClick={() => dispatch(closePopUp())} />
+          <MdOutlineClose onClick={closeModal} />
         </div>
         <div className="titleContainer">
           <p className="popUpTitle">{selectedFood.name}</p>
@@ -48,10 +74,12 @@ function Modal() {
             cols={30}
             value={selectedFood.note}
             onChange={(e) =>
-              dispatch({
-                ...selectedFood,
-                note: e.target.value,
-              })
+              dispatch(
+                setSelectedFood({
+                  ...selectedFood,
+                  note: e.target.value,
+                })
+              )
             }
           />
         </div>
@@ -62,15 +90,29 @@ function Modal() {
             min="1"
             value={selectedFood.qty}
             onChange={(e) =>
-              dispatch({
-                ...selectedFood,
-                qty: Number(e.target.value),
-              })
+              dispatch(
+                setSelectedFood({
+                  ...selectedFood,
+                  qty: Number(e.target.value),
+                })
+              )
             }
           />
-          <button onClick={addOrder} className="addToCartBtn">
-            放入購物車
-          </button>
+          {!isEditing && (
+            <button onClick={addOrder} className="addToCartBtn">
+              放入購物車
+            </button>
+          )}
+          {isEditing && (
+            <div className="addToCartContainer">
+              <button onClick={deleteOrder} className="trashBtn">
+                <BsTrashFill />
+              </button>
+              <button onClick={editOrder} className="addToCartBtn">
+                修改
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
