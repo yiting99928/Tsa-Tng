@@ -4,7 +4,6 @@ import Modal from '../../components/Modal/Modal';
 import OrderList from '../../components/OrderList/OrderList';
 import banner from '../../images/banner.jpg';
 import { fetchFoodData } from '../../redux/homeFoodApi';
-import { initOrder } from '../../redux/orderListApi';
 import { ENUM_FOOD_TYPE } from '../../utils/dataConstants';
 import './Home.scss';
 import Category from './components/Category';
@@ -12,23 +11,12 @@ import Category from './components/Category';
 function Home() {
   const categoryRefs = useRef({});
   const dispatch = useDispatch();
-  const order = useSelector((state) => state.order.items);
   const food = useSelector((state) => state.api.food);
   const info = useSelector((state) => state.info);
 
   useEffect(() => {
     dispatch(fetchFoodData());
   }, [dispatch]);
-
-  useEffect(() => {
-    const savedOrderJSON = localStorage.getItem('orderList');
-    const savedOrder = JSON.parse(savedOrderJSON) || [];
-    dispatch(initOrder(savedOrder));
-  }, [dispatch]);
-
-  useEffect(() => {
-    localStorage.setItem('orderList', JSON.stringify(order));
-  }, [order]);
 
   const scrollToCategory = (category) => {
     const categoryRef = categoryRefs.current[category];
@@ -73,7 +61,14 @@ function Home() {
           </>
         )}
       </main>
-      {info.isShowPopup && <Modal />}
+      {info.isShowPopup && (
+        <Modal>
+          {/* <>
+            <div>123</div>
+            <div>123</div>
+          </> */}
+        </Modal>
+      )}
       <aside className="sideContainer">
         <OrderList />
       </aside>

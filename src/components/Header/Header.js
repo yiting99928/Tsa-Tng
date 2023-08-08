@@ -1,15 +1,13 @@
+import { useState } from 'react';
 import { BiCart, BiSolidUserCircle } from 'react-icons/bi';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { showCart } from '../../redux/infoApi';
 import OrderList from '../OrderList/OrderList';
 import './Header.scss';
 
 function Header() {
   const order = useSelector((state) => state.order.items);
-  const info = useSelector((state) => state.info);
-  const dispatch = useDispatch();
-
+  const [isShowCart, setIsShowCart] = useState(false);
   return (
     <header className="header">
       <h1 className="logo">
@@ -20,12 +18,12 @@ function Header() {
           <BiSolidUserCircle />
           宜庭
         </li>
-        {info.isShowCart && (
+        {isShowCart && (
           <div className="cartContainer">
-            <OrderList />
+            <OrderList closeBtn={true} setIsShowCart={setIsShowCart} />
           </div>
         )}
-        <li onClick={() => dispatch(showCart())} className="headerLink">
+        <li onClick={() => setIsShowCart(true)} className="headerLink">
           <BiCart />
           <div className="orderNum">
             {order.reduce((acc, val) => acc + val.qty, 0)}

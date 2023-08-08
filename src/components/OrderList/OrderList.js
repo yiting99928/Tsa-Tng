@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BsTrashFill } from 'react-icons/bs';
 import {
   MdOutlineAddCircle,
@@ -7,7 +8,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { closeCart, showPopUp } from '../../redux/infoApi';
+import { showPopUp } from '../../redux/infoStateApi';
 import {
   removeOrder,
   setEditing,
@@ -16,10 +17,21 @@ import {
 } from '../../redux/orderListApi';
 import './OrderList.scss';
 
-function OrderList() {
+function OrderList({ closeBtn, setIsShowCart }) {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.order.items);
-  const info = useSelector((state) => state.info);
+
+  useEffect(() => {
+    if (window.innerWidth <= 960 && closeBtn) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [closeBtn]);
 
   function deleteOrder(e, id) {
     e.stopPropagation();
@@ -37,8 +49,8 @@ function OrderList() {
   }
   return (
     <div className="orderList">
-      {info.isShowCart && (
-        <div className="closeBtn" onClick={() => dispatch(closeCart())}>
+      {closeBtn && (
+        <div className="closeBtn" onClick={() => setIsShowCart(false)}>
           <MdOutlineClose />
         </div>
       )}
@@ -51,7 +63,7 @@ function OrderList() {
         </div>
       )}
       {order.length !== 0 && (
-        <ul className="orderItems scroll">
+        <ul className="orderItems">
           {order.map((item) => (
             <li
               key={item.time}
@@ -95,7 +107,7 @@ function OrderList() {
           <span>TWD</span>
         </p>
       </div>
-      <button className="checkoutBtn">
+      <button className="checkoutBtn" onClick={() => setIsShowCart(false)}>
         <Link to="./checkout">結帳</Link>
       </button>
     </div>

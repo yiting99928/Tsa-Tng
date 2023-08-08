@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BsTrashFill } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import { closePopUp } from '../../redux/infoApi';
+import { closePopUp } from '../../redux/infoStateApi';
 
 import {
   createOrder,
@@ -13,7 +13,7 @@ import {
 } from '../../redux/orderListApi';
 import './Modal.scss';
 
-function Modal() {
+function Modal({ footer = '', children }) {
   const dispatch = useDispatch();
   const selectedFood = useSelector((state) => state.order.selectedFood);
   const isEditing = useSelector((state) => state.order.isEditing);
@@ -83,6 +83,7 @@ function Modal() {
             }
           />
         </div>
+        {children}
         <div className="addToCartContainer">
           <input
             className="addOrderNum"

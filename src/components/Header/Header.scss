@@ -33,10 +33,10 @@
       padding: 0px $gapMd;
       border-right: 1px solid $gray;
     }
-  }
-  svg {
-    color: $primary;
-    transform: scale(1.5);
+    svg {
+      color: $primary;
+      transform: scale(1.5);
+    }
   }
   .orderNum {
     border-radius: 25px;

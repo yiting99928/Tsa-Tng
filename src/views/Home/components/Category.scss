@@ -59,10 +59,9 @@
   line-height: 1.3;
 }
 .itemPrice {
-  font-weight: 600;
   position: absolute;
   bottom: $gapMd;
-  z-index: -1;
+  font-size: 14px;
 }
 .saleOut {
   display: grid;

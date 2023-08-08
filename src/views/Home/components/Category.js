@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { showPopUp } from '../../../redux/infoApi';
+import { showPopUp } from '../../../redux/infoStateApi';
 import { setSelectedFood } from '../../../redux/orderListApi';
 import { ENUM_FOOD_TYPE } from '../../../utils/dataConstants';
 import './Category.scss';
