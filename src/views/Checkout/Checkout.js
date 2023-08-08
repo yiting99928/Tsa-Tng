@@ -1,15 +1,33 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './Checkout.scss';
 
 function Checkout() {
-  function handleInputChange() {
-    console.log(123);
-  }
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+  });
+
+  const order = useSelector((state) => state.order.items);
+
   return (
-    <div className="checkout">
+    <div className="checkout container">
       <div className="orderInfo">
         訂餐詳情
+        <ul>
+          {order.map((item) => (
+            <li key={item.time}>
+              <p>{item.name}</p>
+              <p>{item.note}</p>
+              <p>{item.qty}</p>
+              <p>${item.price * item.qty}</p>
+              <br />
+            </li>
+          ))}
+        </ul>
         <br />
         取餐時間:
+        {/* {new Date().getMinutes} */}
         <select>
           <option></option>
           <option></option>
@@ -21,43 +39,34 @@ function Checkout() {
           <option></option>
         </select>
         <br />
-        <div>
-          取餐地址:
-          <img />
-        </div>
+        <div>取餐地址:</div>
         <form>
           <div>
-            <label for="name">Enter your name: </label>
-            <input type="text" name="name" id="name" required />
+            <label htmlFor="name">取餐人姓名</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              onChange={() => setUser(user.name)}
+              value={user.name}
+            />
           </div>
           <div>
-            <label for="email">Enter your email: </label>
-            <input type="email" name="email" id="email" required />
+            <label htmlFor="email">取餐人電子信箱</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              onChange={() => setUser(user.email)}
+              value={user.email}
+            />
           </div>
           <div>
-            <input type="submit" value="Subscribe!" />
+            <input type="submit" value="送出訂單" />
           </div>
         </form>
-        <form>
-          <input value="123" onChange={handleInputChange} />
-          <input value="123" onChange={handleInputChange} />
-          <input value="123" onChange={handleInputChange} />
-          <input value="123" onChange={handleInputChange} />
-          <input value="123" onChange={handleInputChange} />
-        </form>
-      </div>
-      <div>
-        你的訂單
-        <br />
-        TsäTng 早午餐
-        <br />
-        <ul>
-          <li>蔥抓餅加蛋</li>
-          <li>蔥抓餅加蛋</li>
-          <li>蔥抓餅加蛋</li>
-          <li>蔥抓餅加蛋</li>
-        </ul>
-        總計 $666
       </div>
     </div>
   );
