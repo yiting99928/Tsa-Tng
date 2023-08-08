@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../components/Modal/Modal';
 import OrderList from '../../components/OrderList/OrderList';
@@ -10,10 +10,9 @@ import './Home.scss';
 import Category from './components/Category';
 
 function Home() {
-  const [selectedFood, setSelectedFood] = useState(null);
   const categoryRefs = useRef({});
   const dispatch = useDispatch();
-  const order = useSelector((state) => state.order);
+  const order = useSelector((state) => state.order.items);
   const food = useSelector((state) => state.api.food);
   const info = useSelector((state) => state.info);
 
@@ -70,16 +69,11 @@ function Home() {
                 ))}
               </ul>
             </div>
-            <Category
-              setSelectedFood={setSelectedFood}
-              categoryRefs={categoryRefs}
-            />
+            <Category categoryRefs={categoryRefs} />
           </>
         )}
       </main>
-      {info.isShowPopup && selectedFood && (
-        <Modal selectedFood={selectedFood} setSelectedFood={setSelectedFood} />
-      )}
+      {info.isShowPopup && <Modal />}
       <aside className="sideContainer">
         <OrderList />
       </aside>

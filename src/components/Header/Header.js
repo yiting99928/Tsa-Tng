@@ -6,7 +6,7 @@ import OrderList from '../OrderList/OrderList';
 import './Header.scss';
 
 function Header() {
-  const order = useSelector((state) => state.order);
+  const order = useSelector((state) => state.order.items);
   const info = useSelector((state) => state.info);
   const dispatch = useDispatch();
 

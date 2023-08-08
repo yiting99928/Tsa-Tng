@@ -1,16 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showPopUp } from '../../../redux/infoApi';
+import { setSelectedFood } from '../../../redux/orderListApi';
 import { ENUM_FOOD_TYPE } from '../../../utils/dataConstants';
 import './Category.scss';
 
-function Category({ setSelectedFood, categoryRefs }) {
+function Category({ categoryRefs }) {
   const food = useSelector((state) => state.api.food);
   const dispatch = useDispatch();
 
   const handleFoodItemClick = (item) => {
     if (item.qty !== 0) {
-      setSelectedFood({ ...item, qty: 1 });
+      dispatch(setSelectedFood({ ...item, qty: 1 }));
       dispatch(showPopUp());
     }
   };

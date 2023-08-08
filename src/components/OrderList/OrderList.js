@@ -7,13 +7,17 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { closeCart } from '../../redux/infoApi';
-import { removeOrder, updateOrder } from '../../redux/orderListApi';
+import { closeCart, showPopUp } from '../../redux/infoApi';
+import {
+  removeOrder,
+  setSelectedFood,
+  updateOrder,
+} from '../../redux/orderListApi';
 import './OrderList.scss';
 
 function OrderList() {
   const dispatch = useDispatch();
-  const order = useSelector((state) => state.order);
+  const order = useSelector((state) => state.order.items);
   const info = useSelector((state) => state.info);
 
   function deleteOrder(e, id) {
@@ -23,6 +27,11 @@ function OrderList() {
   function editOrder(e, item, newQty) {
     e.stopPropagation();
     dispatch(updateOrder({ ...item, qty: newQty }));
+  }
+
+  function handleEditOrder(food) {
+    dispatch(setSelectedFood(food));
+    dispatch(showPopUp());
   }
 
   return (
@@ -43,7 +52,10 @@ function OrderList() {
       {order.length !== 0 && (
         <ul className="orderItems scroll">
           {order.map((item) => (
-            <li key={item.name + item.note} className="orderItem">
+            <li
+              key={item.name + item.note}
+              className="orderItem"
+              onClick={() => handleEditOrder(item)}>
               <div className="orderDetail">
                 <h4>{item.name}</h4>
                 <div className="itemNum">
@@ -54,7 +66,7 @@ function OrderList() {
                       onClick={(e) => editOrder(e, item, item.qty - 1)}
                     />
                   )}
-                  {item.qty}
+                  <p>{item.qty}</p>
                   <MdOutlineAddCircle
                     onClick={(e) => editOrder(e, item, item.qty + 1)}
                   />

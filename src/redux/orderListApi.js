@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const findExistingItemIndex = (state, action) => {
-  return state.findIndex(
+  return state.items.findIndex(
     (order) =>
       order.name === action.payload.name && order.note === action.payload.note
   );
@@ -9,32 +9,43 @@ const findExistingItemIndex = (state, action) => {
 
 export const orderSlice = createSlice({
   name: 'order',
-  initialState: [],
+  initialState: {
+    selectedFood: null,
+    items: [],
+  },
   reducers: {
+    setSelectedFood(state, action) {
+      state.selectedFood = action.payload;
+    },
     initOrder(state, action) {
-      return (state = action.payload);
+      state.items = action.payload;
     },
     createOrder(state, action) {
       const existingItemIndex = findExistingItemIndex(state, action);
 
       if (existingItemIndex !== -1) {
-        state[existingItemIndex].qty += action.payload.qty;
+        state.items[existingItemIndex].qty += action.payload.qty;
       } else {
-        state.push(action.payload);
+        state.items.push(action.payload);
       }
     },
     removeOrder(state, action) {
       const index = findExistingItemIndex(state, action);
-      state.splice(index, 1);
+      state.items.splice(index, 1);
     },
     updateOrder(state, action) {
       const index = findExistingItemIndex(state, action);
-      state[index] = action.payload;
+      state.items[index] = action.payload;
     },
   },
 });
 
-export const { initOrder, createOrder, removeOrder, updateOrder } =
-  orderSlice.actions;
+export const {
+  setSelectedFood,
+  initOrder,
+  createOrder,
+  removeOrder,
+  updateOrder,
+} = orderSlice.actions;
 
 export default orderSlice.reducer;

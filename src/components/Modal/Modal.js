@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closePopUp } from '../../redux/infoApi';
 import { createOrder } from '../../redux/orderListApi';
 import './Modal.scss';
 
-function Modal({ selectedFood, setSelectedFood }) {
+function Modal() {
   const dispatch = useDispatch();
-
+  const selectedFood = useSelector((state) => state.order.selectedFood);
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -48,7 +48,7 @@ function Modal({ selectedFood, setSelectedFood }) {
             cols={30}
             value={selectedFood.note}
             onChange={(e) =>
-              setSelectedFood({
+              dispatch({
                 ...selectedFood,
                 note: e.target.value,
               })
@@ -62,7 +62,7 @@ function Modal({ selectedFood, setSelectedFood }) {
             min="1"
             value={selectedFood.qty}
             onChange={(e) =>
-              setSelectedFood({
+              dispatch({
                 ...selectedFood,
                 qty: Number(e.target.value),
               })
