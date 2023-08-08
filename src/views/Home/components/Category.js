@@ -10,10 +10,9 @@ function Category({ categoryRefs }) {
   const dispatch = useDispatch();
 
   const handleFoodItemClick = (item) => {
-    if (item.qty !== 0) {
-      dispatch(setSelectedFood({ ...item, qty: 1 }));
-      dispatch(showPopUp());
-    }
+    if (item.qty === 0) return;
+    dispatch(setSelectedFood({ ...item, qty: 1 }));
+    dispatch(showPopUp());
   };
   const organizedFoodData = food.reduce((acc, item) => {
     // acc 預設為 {} 若acc中沒有該 key 則賦予這個key一個空陣列

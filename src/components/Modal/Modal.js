@@ -26,20 +26,20 @@ function Modal() {
   }, []);
 
   function addOrder() {
+    if (selectedFood.qty === 0) return;
     dispatch(createOrder({ ...selectedFood, time: new Date().getTime() }));
-    dispatch(closePopUp());
+    closeModal();
   }
 
   function editOrder() {
+    if (selectedFood.qty === 0) return;
     dispatch(updateOrder(selectedFood));
-    dispatch(closePopUp());
-    dispatch(setEditing(false));
+    closeModal();
   }
 
   function deleteOrder() {
     dispatch(removeOrder(selectedFood));
-    dispatch(closePopUp());
-    dispatch(setEditing(false));
+    closeModal();
   }
   function closeModal() {
     dispatch(closePopUp());
@@ -99,7 +99,13 @@ function Modal() {
             }
           />
           {!isEditing && (
-            <button onClick={addOrder} className="addToCartBtn">
+            <button
+              onClick={addOrder}
+              className={
+                selectedFood.qty === 0
+                  ? 'addToCartBtn defaultAddCartBtn'
+                  : 'addToCartBtn'
+              }>
               放入購物車
             </button>
           )}
@@ -108,8 +114,14 @@ function Modal() {
               <button onClick={deleteOrder} className="trashBtn">
                 <BsTrashFill />
               </button>
-              <button onClick={editOrder} className="addToCartBtn">
-                修改
+              <button
+                onClick={editOrder}
+                className={
+                  selectedFood.qty === 0
+                    ? 'addToCartBtn defaultAddCartBtn'
+                    : 'addToCartBtn'
+                }>
+                修改訂單
               </button>
             </div>
           )}
