@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BsTrashFill } from 'react-icons/bs';
 import {
   MdOutlineAddCircle,
@@ -7,19 +7,20 @@ import {
 } from 'react-icons/md';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { showPopUp } from '../../redux/infoStateApi';
 import {
   removeOrder,
-  setEditing,
   setSelectedFood,
   updateOrder,
 } from '../../redux/orderListApi';
+import Modal from '../Modal/Modal';
 import './OrderList.scss';
 
-function OrderList({ closeBtn, setIsShowCart }) {
+function OrderList({ closeBtn, setIsCartShown }) {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.order.items);
+  const [isModalShown, setIsModalShown] = useState(false);
+  const selectedFood = useSelector((state) => state.order.selectedFood);
+  const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
 
   useEffect(() => {
     if (window.innerWidth <= 960 && closeBtn) {
@@ -36,23 +37,108 @@ function OrderList({ closeBtn, setIsShowCart }) {
   function deleteOrder(e, id) {
     e.stopPropagation();
     dispatch(removeOrder(id));
+    setIsDeleteModalShown(true);
+    setTimeout(() => setIsDeleteModalShown(false), 800);
   }
-  function editOrder(e, item, newQty) {
+
+  function editOrderNum(e, item, newQty) {
     e.stopPropagation();
     dispatch(updateOrder({ ...item, qty: newQty }));
   }
 
   function handleEditOrder(food) {
     dispatch(setSelectedFood(food));
-    dispatch(showPopUp());
-    dispatch(setEditing(true));
+    setIsModalShown(true);
   }
+
+  function modalEditOrder() {
+    if (selectedFood.qty === 0) return;
+    dispatch(updateOrder(selectedFood));
+    setIsModalShown(false);
+  }
+
+  function modalDeleteOrder() {
+    dispatch(removeOrder(selectedFood));
+    setIsModalShown(false);
+  }
+
   return (
     <div className="orderList">
-      {closeBtn && (
-        <div className="closeBtn" onClick={() => setIsShowCart(false)}>
-          <MdOutlineClose />
-        </div>
+      <div className="closeBtn" onClick={() => setIsCartShown(false)}>
+        <MdOutlineClose />
+      </div>
+      {isDeleteModalShown && (
+        <Modal>
+          <p className="deleteModal"> 刪除成功^^</p>
+          <div className="timerBar" />
+        </Modal>
+      )}
+      {isModalShown && (
+        <Modal>
+          <img
+            src={selectedFood.img}
+            alt={selectedFood.name}
+            width="100%"
+            height="100"
+            className="foodImg"
+          />
+          <div className="closeBtn">
+            <MdOutlineClose onClick={() => setIsModalShown(false)} />
+          </div>
+          <div className="titleContainer">
+            <p className="popUpTitle">{selectedFood.name}</p>
+            <p>${selectedFood.price}</p>
+          </div>
+          <p className="popUpDescription">{selectedFood.description}</p>
+
+          <div>
+            <p>餐點備註</p>
+            <textarea
+              name="orderNote"
+              rows={3}
+              cols={30}
+              value={selectedFood.note}
+              onChange={(e) =>
+                dispatch(
+                  setSelectedFood({
+                    ...selectedFood,
+                    note: e.target.value,
+                  })
+                )
+              }
+            />
+          </div>
+          <div className="addToCartContainer">
+            <input
+              className="addOrderNum"
+              type="number"
+              min="1"
+              value={selectedFood.qty}
+              onChange={(e) =>
+                dispatch(
+                  setSelectedFood({
+                    ...selectedFood,
+                    qty: Number(e.target.value),
+                  })
+                )
+              }
+            />
+            <div className="addToCartContainer">
+              <button onClick={modalDeleteOrder} className="trashBtn">
+                <BsTrashFill />
+              </button>
+              <button
+                onClick={modalEditOrder}
+                className={
+                  selectedFood.qty === 0
+                    ? 'addToCartBtn defaultAddCartBtn'
+                    : 'addToCartBtn'
+                }>
+                修改訂單
+              </button>
+            </div>
+          </div>
+        </Modal>
       )}
       <h3 className="orderTitle">您的訂單</h3>
       {order.length === 0 && (
@@ -76,12 +162,12 @@ function OrderList({ closeBtn, setIsShowCart }) {
                     <BsTrashFill onClick={(e) => deleteOrder(e, item.id)} />
                   ) : (
                     <MdOutlineRemoveCircle
-                      onClick={(e) => editOrder(e, item, item.qty - 1)}
+                      onClick={(e) => editOrderNum(e, item, item.qty - 1)}
                     />
                   )}
                   <p>{item.qty}</p>
                   <MdOutlineAddCircle
-                    onClick={(e) => editOrder(e, item, item.qty + 1)}
+                    onClick={(e) => editOrderNum(e, item, item.qty + 1)}
                   />
                 </div>
               </div>
@@ -107,9 +193,7 @@ function OrderList({ closeBtn, setIsShowCart }) {
           <span>TWD</span>
         </p>
       </div>
-      <button className="checkoutBtn" onClick={() => setIsShowCart(false)}>
-        <Link to="./checkout">結帳</Link>
-      </button>
+      <button className="checkoutBtn">結帳</button>
     </div>
   );
 }

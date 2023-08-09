@@ -7,7 +7,7 @@ import './Header.scss';
 
 function Header() {
   const order = useSelector((state) => state.order.items);
-  const [isShowCart, setIsShowCart] = useState(false);
+  const [isCartShown, setIsCartShown] = useState(false);
   return (
     <header className="header">
       <h1 className="logo">
@@ -18,12 +18,12 @@ function Header() {
           <BiSolidUserCircle />
           宜庭
         </li>
-        {isShowCart && (
+        {isCartShown && (
           <div className="cartContainer">
-            <OrderList closeBtn={true} setIsShowCart={setIsShowCart} />
+            <OrderList closeBtn={true} setIsCartShown={setIsCartShown} />
           </div>
         )}
-        <li onClick={() => setIsShowCart(true)} className="headerLink">
+        <li onClick={() => setIsCartShown(true)} className="headerLink">
           <BiCart />
           <div className="orderNum">
             {order.reduce((acc, val) => acc + val.qty, 0)}

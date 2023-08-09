@@ -11,8 +11,8 @@
     gap: $gapMd;
   }
 }
-.cartContainer{
-  .orderTitle{
+.cartContainer {
+  .orderTitle {
     margin-bottom: $gapSm;
   }
   .orderList {
@@ -21,10 +21,10 @@
     flex-direction: column;
   }
 }
-.closeBtn{
+.closeBtn {
   position: absolute;
-  top:$gapXL;
-  right:$gapXL;
+  top: $gapXL;
+  right: $gapXL;
   cursor: pointer;
 }
 .orderItems {
@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   gap: $gapBase;
-  p{
+  p {
     min-width: 15px;
     text-align: center;
   }
@@ -96,10 +96,31 @@
   border: none;
   font-size: 16px;
   letter-spacing: 3px;
-  a {
-    color: #fff;
+  color: #fff;
+  cursor: pointer;
+}
+.deleteModal {
+  width: 200px;
+  text-align: center;
+}
+
+@keyframes countdown {
+  0% {
+    transform: scaleX(1);
   }
-  a:visited {
-    color: #fff;
+  100% {
+    transform: scaleX(0);
   }
+}
+
+.timerBar {
+  width: 100%;
+  background-color: $primary;
+  height: 5px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  transform: scaleX(1);
+  transform-origin: left;
+  animation: countdown 0.8s linear forwards;
 }
