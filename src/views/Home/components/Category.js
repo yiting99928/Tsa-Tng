@@ -24,7 +24,7 @@ function Category({ categoryRefs }) {
     return acc;
   }, {});
 
-  function closeModal() {
+  function handleClose() {
     setIsModalShown(false);
     dispatch(setSelectedFood(null));
   }
@@ -58,7 +58,7 @@ function Category({ categoryRefs }) {
       ))}
       {isModalShown && (
         <Modal setIsModalShown={setIsModalShown}>
-          <FoodModal closeModal={closeModal} />
+          <FoodModal handleClose={handleClose} />
         </Modal>
       )}
     </div>

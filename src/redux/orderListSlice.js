@@ -16,14 +16,10 @@ export const orderSlice = createSlice({
   initialState: {
     selectedFood: null,
     items: [],
-    isEditing: false,
   },
   reducers: {
     setSelectedFood(state, action) {
       state.selectedFood = action.payload;
-    },
-    setEditing(state, action) {
-      state.isEditing = action.payload;
     },
     initOrder(state, action) {
       state.items = action.payload;
@@ -50,7 +46,6 @@ export const orderSlice = createSlice({
 
 export const {
   setSelectedFood,
-  setEditing,
   initOrder,
   createOrder,
   removeOrder,

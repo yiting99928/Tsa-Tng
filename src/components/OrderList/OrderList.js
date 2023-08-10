@@ -34,7 +34,7 @@ function OrderList({ closeBtn, setIsCartShown }) {
     };
   }, [closeBtn]);
 
-  function closeModal() {
+  function handleClose() {
     setIsModalShown(false);
     dispatch(setSelectedFood(null));
   }
@@ -69,7 +69,7 @@ function OrderList({ closeBtn, setIsCartShown }) {
       )}
       {isModalShown && (
         <Modal>
-          <FoodModal editing={true} closeModal={closeModal} />
+          <FoodModal isEditing={true} handleClose={handleClose} />
         </Modal>
       )}
       <h3 className="orderTitle">您的訂單</h3>

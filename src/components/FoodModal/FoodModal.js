@@ -9,25 +9,25 @@ import {
 } from '../../redux/orderListSlice';
 import './FoodModal.scss';
 
-function FoodModal({ editing = false, closeModal }) {
+function FoodModal({ isEditing = false, handleClose }) {
   const selectedFood = useSelector((state) => state.order.selectedFood);
   const dispatch = useDispatch();
 
   function addOrder() {
     if (selectedFood.qty === 0) return;
     dispatch(createOrder({ ...selectedFood, time: new Date().getTime() }));
-    closeModal();
+    handleClose();
   }
 
   function editOrder() {
     if (selectedFood.qty === 0) return;
     dispatch(updateOrder(selectedFood));
-    closeModal();
+    handleClose();
   }
 
   function deleteOrder() {
     dispatch(removeOrder(selectedFood));
-    closeModal();
+    handleClose();
   }
 
   return (
@@ -40,7 +40,7 @@ function FoodModal({ editing = false, closeModal }) {
         className="foodImg"
       />
       <div className="closeBtn">
-        <MdOutlineClose onClick={closeModal} />
+        <MdOutlineClose onClick={handleClose} />
       </div>
       <div className="titleContainer">
         <p className="popUpTitle">{selectedFood.name}</p>
@@ -78,7 +78,7 @@ function FoodModal({ editing = false, closeModal }) {
             )
           }
         />
-        {!editing && (
+        {!isEditing && (
           <button
             onClick={addOrder}
             className={
@@ -90,7 +90,7 @@ function FoodModal({ editing = false, closeModal }) {
           </button>
         )}
 
-        {editing && (
+        {isEditing && (
           <div className="addToCartContainer">
             <button onClick={deleteOrder} className="trashBtn">
               <BsTrashFill />
