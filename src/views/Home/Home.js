@@ -49,13 +49,7 @@ function Home() {
           width="100%"
           height="450"
         />
-        {isLoading && (
-          <div className="loadingContainer">
-            <div class="bouncing-loader">
-              <Loading />
-            </div>
-          </div>
-        )}
+        {isLoading && <Loading />}
         {!isLoading && api.food.length === 0 && (
           <div className="noFoodData">Sorry! Something went wrong</div>
         )}
