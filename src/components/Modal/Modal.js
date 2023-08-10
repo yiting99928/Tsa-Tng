@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import './Modal.scss';
 
-function Modal({ footer = '', children }) {
+function Modal({ children }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -13,7 +13,6 @@ function Modal({ footer = '', children }) {
   return (
     <div className="modalContainer">
       <div className="popup">{children}</div>
-      {footer && footer}
     </div>
   );
 }
