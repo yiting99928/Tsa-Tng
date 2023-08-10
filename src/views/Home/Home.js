@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../../components/Loading/Loading';
 import OrderList from '../../components/OrderList/OrderList';
 import banner from '../../images/banner.jpg';
 import { fetchFoodData } from '../../redux/homeFoodApi';
@@ -10,11 +11,20 @@ import Category from './components/Category';
 function Home() {
   const categoryRefs = useRef({});
   const dispatch = useDispatch();
-  const food = useSelector((state) => state.api.food);
+  const api = useSelector((state) => state.api);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchFoodData());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (api.status === 'loading') {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    }
+  }, [api.status]);
 
   const scrollToCategory = (category) => {
     const categoryRef = categoryRefs.current[category];
@@ -25,7 +35,7 @@ function Home() {
   };
 
   function uniqueTypes() {
-    const uniqueTypes = new Set(food.map((item) => item.group));
+    const uniqueTypes = new Set(api.food.map((item) => item.group));
     return Array.from(uniqueTypes);
   }
 
@@ -39,10 +49,17 @@ function Home() {
           width="100%"
           height="450"
         />
-        {food.length === 0 && (
+        {isLoading && (
+          <div className="loadingContainer">
+            <div class="bouncing-loader">
+              <Loading />
+            </div>
+          </div>
+        )}
+        {!isLoading && api.food.length === 0 && (
           <div className="noFoodData">Sorry! Something went wrong</div>
         )}
-        {food.length !== 0 && (
+        {!isLoading && api.food.length !== 0 && (
           <>
             <div className="categoryNav scroll">
               <ul className="container categoryBtns">

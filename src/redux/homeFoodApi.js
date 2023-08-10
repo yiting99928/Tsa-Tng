@@ -2,9 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchFoodData = createAsyncThunk('api/fetchFoodData', async () => {
   try {
-    const response = await fetch('http://localhost:3000/breakfasts');
+    const response = await fetch(
+      'https://raw.githubusercontent.com/yiting99928/Tsa-Tng/main/db.json'
+    );
     const data = await response.json();
-    return data;
+    return data.breakfasts;
   } catch (error) {
     throw new Error('Failed to fetch food data.');
   }
@@ -12,7 +14,7 @@ export const fetchFoodData = createAsyncThunk('api/fetchFoodData', async () => {
 
 const initialState = {
   food: [],
-  status: false,
+  status: null,
 };
 
 const homeFoodApi = createSlice({
