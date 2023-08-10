@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import foodApiReducer from './homeFoodApi';
-import orderReducer from './orderListApi';
+import orderReducer from './orderListSlice';
 
 export const store = configureStore({
   reducer: {

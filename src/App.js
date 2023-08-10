@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initOrder } from './redux/orderListApi';
+import { initOrder } from './redux/orderListSlice';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';

@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FoodModal from '../../../components/FoodModal/FoodModal.js';
 import Modal from '../../../components/Modal/Modal';
-import { createOrder, setSelectedFood } from '../../../redux/orderListApi';
+import { setSelectedFood } from '../../../redux/orderListSlice';
 import { ENUM_FOOD_TYPE } from '../../../utils/dataConstants';
 import './Category.scss';
 
 function Category({ categoryRefs }) {
   const food = useSelector((state) => state.api.food);
-  const selectedFood = useSelector((state) => state.order.selectedFood);
   const dispatch = useDispatch();
   const [isModalShown, setIsModalShown] = useState(false);
 
@@ -28,12 +27,6 @@ function Category({ categoryRefs }) {
   function closeModal() {
     setIsModalShown(false);
     dispatch(setSelectedFood(null));
-  }
-
-  function addOrder() {
-    if (selectedFood.qty === 0) return;
-    dispatch(createOrder({ ...selectedFood, time: new Date().getTime() }));
-    closeModal();
   }
 
   return (

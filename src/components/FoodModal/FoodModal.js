@@ -6,7 +6,7 @@ import {
   removeOrder,
   setSelectedFood,
   updateOrder,
-} from '../../redux/orderListApi';
+} from '../../redux/orderListSlice';
 import './FoodModal.scss';
 
 function FoodModal({ editing = false, closeModal }) {
