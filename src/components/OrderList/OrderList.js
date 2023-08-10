@@ -12,13 +12,13 @@ import {
   setSelectedFood,
   updateOrder,
 } from '../../redux/orderListApi';
+import FoodModal from '../FoodModal/FoodModal';
 import Modal from '../Modal/Modal';
 import './OrderList.scss';
 
 function OrderList({ closeBtn, setIsCartShown }) {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.order.items);
-  const selectedFood = useSelector((state) => state.order.selectedFood);
   const [isModalShown, setIsModalShown] = useState(false);
   const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
 
@@ -33,6 +33,11 @@ function OrderList({ closeBtn, setIsCartShown }) {
       document.body.style.overflow = 'auto';
     };
   }, [closeBtn]);
+
+  function closeModal() {
+    setIsModalShown(false);
+    dispatch(setSelectedFood(null));
+  }
 
   function deleteOrder(e, id) {
     e.stopPropagation();
@@ -51,19 +56,6 @@ function OrderList({ closeBtn, setIsCartShown }) {
     setIsModalShown(true);
   }
 
-  function modalEditOrder() {
-    if (selectedFood.qty === 0) return;
-    dispatch(updateOrder(selectedFood));
-    setIsModalShown(false);
-    dispatch(setSelectedFood(null));
-  }
-
-  function modalDeleteOrder() {
-    dispatch(removeOrder(selectedFood));
-    setIsModalShown(false);
-    dispatch(setSelectedFood(null));
-  }
-
   return (
     <div className="orderList">
       <div className="closeBtn" onClick={() => setIsCartShown(false)}>
@@ -77,67 +69,7 @@ function OrderList({ closeBtn, setIsCartShown }) {
       )}
       {isModalShown && (
         <Modal>
-          <img
-            src={selectedFood.img}
-            alt={selectedFood.name}
-            width="100%"
-            height="100"
-            className="foodImg"
-          />
-          <div className="closeBtn">
-            <MdOutlineClose onClick={() => setIsModalShown(false)} />
-          </div>
-          <div className="titleContainer">
-            <p className="popUpTitle">{selectedFood.name}</p>
-            <p>${selectedFood.price}</p>
-          </div>
-          <p className="popUpDescription">{selectedFood.description}</p>
-
-          <p>餐點備註</p>
-          <textarea
-            name="orderNote"
-            rows={3}
-            cols={30}
-            value={selectedFood.note}
-            onChange={(e) =>
-              dispatch(
-                setSelectedFood({
-                  ...selectedFood,
-                  note: e.target.value,
-                })
-              )
-            }
-          />
-          <div className="addToCartContainer">
-            <input
-              className="addOrderNum"
-              type="number"
-              min="1"
-              value={selectedFood.qty}
-              onChange={(e) =>
-                dispatch(
-                  setSelectedFood({
-                    ...selectedFood,
-                    qty: Number(e.target.value),
-                  })
-                )
-              }
-            />
-            <div className="addToCartContainer">
-              <button onClick={modalDeleteOrder} className="trashBtn">
-                <BsTrashFill />
-              </button>
-              <button
-                onClick={modalEditOrder}
-                className={
-                  selectedFood.qty === 0
-                    ? 'addToCartBtn defaultAddCartBtn'
-                    : 'addToCartBtn'
-                }>
-                修改訂單
-              </button>
-            </div>
-          </div>
+          <FoodModal editing={true} closeModal={closeModal} />
         </Modal>
       )}
       <h3 className="orderTitle">您的訂單</h3>

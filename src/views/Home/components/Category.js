@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
+import FoodModal from '../../../components/FoodModal/FoodModal.js';
 import Modal from '../../../components/Modal/Modal';
 import { createOrder, setSelectedFood } from '../../../redux/orderListApi';
 import { ENUM_FOOD_TYPE } from '../../../utils/dataConstants';
@@ -65,62 +65,7 @@ function Category({ categoryRefs }) {
       ))}
       {isModalShown && (
         <Modal setIsModalShown={setIsModalShown}>
-          <img
-            src={selectedFood.img}
-            alt={selectedFood.name}
-            width="100%"
-            height="100"
-            className="foodImg"
-          />
-          <div className="closeBtn">
-            <MdOutlineClose onClick={closeModal} />
-          </div>
-          <div className="titleContainer">
-            <p className="popUpTitle">{selectedFood.name}</p>
-            <p>${selectedFood.price}</p>
-          </div>
-          <p className="popUpDescription">{selectedFood.description}</p>
-
-          <p>餐點備註</p>
-          <textarea
-            name="orderNote"
-            rows={3}
-            cols={30}
-            value={selectedFood.note}
-            onChange={(e) =>
-              dispatch(
-                setSelectedFood({
-                  ...selectedFood,
-                  note: e.target.value,
-                })
-              )
-            }
-          />
-          <div className="addToCartContainer">
-            <input
-              className="addOrderNum"
-              type="number"
-              min="1"
-              value={selectedFood.qty}
-              onChange={(e) =>
-                dispatch(
-                  setSelectedFood({
-                    ...selectedFood,
-                    qty: Number(e.target.value),
-                  })
-                )
-              }
-            />
-            <button
-              onClick={addOrder}
-              className={
-                selectedFood.qty === 0
-                  ? 'addToCartBtn defaultAddCartBtn'
-                  : 'addToCartBtn'
-              }>
-              放入購物車
-            </button>
-          </div>
+          <FoodModal closeModal={closeModal} />
         </Modal>
       )}
     </div>
