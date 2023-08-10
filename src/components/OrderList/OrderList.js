@@ -93,23 +93,21 @@ function OrderList({ closeBtn, setIsCartShown }) {
           </div>
           <p className="popUpDescription">{selectedFood.description}</p>
 
-          <div>
-            <p>餐點備註</p>
-            <textarea
-              name="orderNote"
-              rows={3}
-              cols={30}
-              value={selectedFood.note}
-              onChange={(e) =>
-                dispatch(
-                  setSelectedFood({
-                    ...selectedFood,
-                    note: e.target.value,
-                  })
-                )
-              }
-            />
-          </div>
+          <p>餐點備註</p>
+          <textarea
+            name="orderNote"
+            rows={3}
+            cols={30}
+            value={selectedFood.note}
+            onChange={(e) =>
+              dispatch(
+                setSelectedFood({
+                  ...selectedFood,
+                  note: e.target.value,
+                })
+              )
+            }
+          />
           <div className="addToCartContainer">
             <input
               className="addOrderNum"
