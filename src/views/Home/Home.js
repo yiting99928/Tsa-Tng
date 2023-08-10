@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchFoodData } from '../../api/homeFoodApi';
 import Loading from '../../components/Loading/Loading';
 import OrderList from '../../components/OrderList/OrderList';
 import banner from '../../images/banner.jpg';
-import { fetchFoodData } from '../../redux/homeFoodApi';
 import { ENUM_FOOD_TYPE } from '../../utils/dataConstants';
 import './Home.scss';
 import Category from './components/Category';

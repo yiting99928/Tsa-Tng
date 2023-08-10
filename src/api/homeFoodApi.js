@@ -29,7 +29,7 @@ const homeFoodApi = createSlice({
       state.food = action.payload;
       state.status = 'success';
     });
-    builder.addCase(fetchFoodData.rejected, (state, action) => {
+    builder.addCase(fetchFoodData.rejected, (state) => {
       state.status = 'error';
     });
   },
