@@ -17,7 +17,7 @@
   @media screen and (max-width: 1260px) {
     grid-template-columns: 1fr;
   }
-  @media screen and (max-width:960px){
+  @media screen and (max-width: 960px) {
     padding: 0px $gapXL;
   }
 }
@@ -27,8 +27,8 @@
   color: $primary;
   margin-bottom: $gapMd;
   letter-spacing: 1.5px;
-  padding: 0px 80PX;
-  @media screen and (max-width:960px){
+  padding: 0px 80px;
+  @media screen and (max-width: 960px) {
     padding: 0px $gapXL;
   }
 }
@@ -38,12 +38,16 @@
   height: 100px;
   display: flex;
   justify-content: space-between;
+  gap:$gapBase;
   padding: $gapMd;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   img {
     border-radius: 6px;
+    @media screen and (max-width: 375px) {
+      display: none;
+    }
   }
 }
 .itemTitle {
@@ -53,10 +57,17 @@
 .itemDescription {
   color: $gray;
   font-size: 14px;
-  max-width: 300px;
-  max-height: 35px;
-  overflow: hidden;
+  max-width: 250px;
   line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  @media screen and (max-width: 1260px) {
+    max-width: 450px;
+  }
+  @media screen and (max-width: 375px) {
+    max-width: 220px;
+  }
 }
 .itemPrice {
   position: absolute;
