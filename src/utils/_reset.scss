@@ -146,14 +146,9 @@ img {
   display: block;
 }
 
-a:link {
-  text-decoration: none;
-  color: black;
-}
-
+a:link,
 a:visited {
   text-decoration: none;
-  color: black;
 }
 
 input[type='text']:focus {

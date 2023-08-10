@@ -81,23 +81,21 @@ function Category({ categoryRefs }) {
           </div>
           <p className="popUpDescription">{selectedFood.description}</p>
 
-          <div>
-            <p>餐點備註</p>
-            <textarea
-              name="orderNote"
-              rows={3}
-              cols={30}
-              value={selectedFood.note}
-              onChange={(e) =>
-                dispatch(
-                  setSelectedFood({
-                    ...selectedFood,
-                    note: e.target.value,
-                  })
-                )
-              }
-            />
-          </div>
+          <p>餐點備註</p>
+          <textarea
+            name="orderNote"
+            rows={3}
+            cols={30}
+            value={selectedFood.note}
+            onChange={(e) =>
+              dispatch(
+                setSelectedFood({
+                  ...selectedFood,
+                  note: e.target.value,
+                })
+              )
+            }
+          />
           <div className="addToCartContainer">
             <input
               className="addOrderNum"
@@ -122,22 +120,6 @@ function Category({ categoryRefs }) {
               }>
               放入購物車
             </button>
-            {/* {isEditing && (
-                <div className="addToCartContainer">
-                  <button onClick={deleteOrder} className="trashBtn">
-                    <BsTrashFill />
-                  </button>
-                  <button
-                    onClick={editOrder}
-                    className={
-                      selectedFood.qty === 0
-                        ? 'addToCartBtn defaultAddCartBtn'
-                        : 'addToCartBtn'
-                    }>
-                    修改訂單
-                  </button>
-                </div>
-              )} */}
           </div>
         </Modal>
       )}
