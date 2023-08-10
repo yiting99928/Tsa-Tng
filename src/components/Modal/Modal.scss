@@ -63,6 +63,9 @@
     &:focus{
       border:1px solid $primary
     }
+    @media screen and (max-width:960px){
+      width: 250px;
+    }
   }
   .addToCartContainer{
     display: flex;

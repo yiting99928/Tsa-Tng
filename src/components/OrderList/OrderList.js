@@ -18,8 +18,8 @@ import './OrderList.scss';
 function OrderList({ closeBtn, setIsCartShown }) {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.order.items);
-  const [isModalShown, setIsModalShown] = useState(false);
   const selectedFood = useSelector((state) => state.order.selectedFood);
+  const [isModalShown, setIsModalShown] = useState(false);
   const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function OrderList({ closeBtn, setIsCartShown }) {
     e.stopPropagation();
     dispatch(removeOrder(id));
     setIsDeleteModalShown(true);
-    setTimeout(() => setIsDeleteModalShown(false), 800);
+    setTimeout(() => setIsDeleteModalShown(false), 700);
   }
 
   function editOrderNum(e, item, newQty) {
@@ -55,11 +55,13 @@ function OrderList({ closeBtn, setIsCartShown }) {
     if (selectedFood.qty === 0) return;
     dispatch(updateOrder(selectedFood));
     setIsModalShown(false);
+    dispatch(setSelectedFood(null));
   }
 
   function modalDeleteOrder() {
     dispatch(removeOrder(selectedFood));
     setIsModalShown(false);
+    dispatch(setSelectedFood(null));
   }
 
   return (
@@ -69,7 +71,7 @@ function OrderList({ closeBtn, setIsCartShown }) {
       </div>
       {isDeleteModalShown && (
         <Modal>
-          <p className="deleteModal"> 刪除成功^^</p>
+          <p className="deleteModal"> 刪除成功</p>
           <div className="timerBar" />
         </Modal>
       )}
