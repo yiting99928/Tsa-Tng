@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Tsa-Tng/static/css/main.d4ebca99.css",
-    "main.js": "/Tsa-Tng/static/js/main.05faebdd.js",
+    "main.js": "/Tsa-Tng/static/js/main.b8e893b0.js",
     "static/media/banner.jpg": "/Tsa-Tng/static/media/banner.78f14db653a3cafa9be0.jpg",
     "index.html": "/Tsa-Tng/index.html",
     "main.d4ebca99.css.map": "/Tsa-Tng/static/css/main.d4ebca99.css.map",
-    "main.05faebdd.js.map": "/Tsa-Tng/static/js/main.05faebdd.js.map"
+    "main.b8e893b0.js.map": "/Tsa-Tng/static/js/main.b8e893b0.js.map"
   },
   "entrypoints": [
     "static/css/main.d4ebca99.css",
-    "static/js/main.05faebdd.js"
+    "static/js/main.b8e893b0.js"
   ]
 }
