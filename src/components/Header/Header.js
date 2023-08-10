@@ -10,20 +10,22 @@ function Header() {
   const [isCartShown, setIsCartShown] = useState(false);
   return (
     <header className="header">
-      <h1 className="logo">
-        <Link to="./">TsäTng</Link>
-      </h1>
-      <ul className="topBar">
-        <li className="headerLink">
-          <BiSolidUserCircle />
-          宜庭
-        </li>
+      <ul className="menu">
         {isCartShown && (
           <div className="cartContainer">
             <OrderList closeBtn={true} setIsCartShown={setIsCartShown} />
           </div>
         )}
-        <li onClick={() => setIsCartShown(true)} className="headerLink">
+        <li>
+          <h1 className="logo">
+            <Link to="./">TsäTng</Link>
+          </h1>
+        </li>
+        <li className="menuLink user">
+          <BiSolidUserCircle />
+          <p>宜庭</p>
+        </li>
+        <li onClick={() => setIsCartShown(true)} className="menuLink">
           <BiCart />
           <div className="orderNum">
             {order.reduce((acc, val) => acc + val.qty, 0)}

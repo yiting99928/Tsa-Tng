@@ -4,11 +4,17 @@
   background-color: $white;
   z-index: 2;
   width: 100%;
-  display: flex;
-  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.12);
-  height: 64px;
-  align-items: center;
   padding: 0px 30px;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.12);
+  .menu {
+    display: flex;
+    height: 64px;
+    align-items: center;
+    width: 100%;
+    @media screen and (max-width: 960px) {
+      justify-content: space-between;
+    }
+  }
   .logo {
     font-size: 30px;
     font-weight: 700;
@@ -16,37 +22,42 @@
     a {
       color: $primary;
     }
+    @media screen and (max-width: 960px) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
-  .topBar {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: $gapLg;
-    line-height: $gapLg;
-  }
-  .headerLink {
+  .menuLink {
     display: flex;
     align-items: center;
     gap: $gapSm;
     cursor: pointer;
-    &:first-child {
-      padding: 0px $gapMd;
-      border-right: 1px solid $gray;
-    }
+
     svg {
       color: $primary;
       transform: scale(1.5);
     }
   }
-  .orderNum {
-    border-radius: 25px;
-    width: 25px;
-    height: 25px;
-    font-size: 13px;
-    display: grid;
-    place-items: center;
-    color: $white;
-    background-color: $primary;
+  .user {
+    padding: 0px $gapMd;
+    border-right: 1px solid $gray;
+    margin-right: $gapMd;
+    margin-left: auto;
+    @media screen and (max-width: 960px) {
+      margin-left: 0px;
+      border-right: 0px;
+      padding: 0px;
+      gap: 0px;
+      order: -1;
+    }
+    p {
+      padding-left: $gapBase;
+      @media screen and (max-width: 960px) {
+        display: none;
+      }
+    }
   }
   .cartContainer {
     position: fixed;
@@ -59,8 +70,18 @@
     padding: 50px 80px;
     max-height: 100vh;
     display: none;
-    @media screen and (max-width:960px){
+    @media screen and (max-width: 960px) {
       display: block;
     }
+  }
+  .orderNum {
+    border-radius: 25px;
+    width: 25px;
+    height: 25px;
+    font-size: 13px;
+    display: grid;
+    place-items: center;
+    color: $white;
+    background-color: $primary;
   }
 }
