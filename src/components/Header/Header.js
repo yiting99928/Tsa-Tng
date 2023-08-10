@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { BiCart, BiSolidUserCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import OrderList from '../OrderList/OrderList';
 import './Header.scss';
 
@@ -17,9 +16,7 @@ function Header() {
           </div>
         )}
         <li>
-          <h1 className="logo">
-            <Link to="./">TsäTng</Link>
-          </h1>
+          <h1 className="logo">TsäTng</h1>
         </li>
         <li className="menuLink user">
           <BiSolidUserCircle />

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initOrder } from './redux/orderListApi';
 
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import './utils/_global.scss';
@@ -23,14 +22,11 @@ function App() {
   }, [order]);
 
   return (
-    <BrowserRouter>
+    <>
       <Header />
-      <Routes>
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Home />
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
